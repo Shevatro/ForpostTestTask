@@ -40,27 +40,32 @@ public class ChronologyFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+        initModel();
     }
 
-    private void init() {
+    private void initModel() {
         MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         LiveData<List<Fighter>> liveData = viewModel.getListOfFightersLiveData();
         liveData.observe(this, this::update);
     }
 
     private void update(List<Fighter> fighters) {
+        if (fighters == null) return;
         if (adapter == null) {
             initAdapter(fighters);
         } else {
-            adapter.update(fighters);
+            updateAdapter(fighters);
         }
     }
 
     private void initAdapter(List<Fighter> fighters) {
-        if (fighters == null) return;
-
         adapter = new FighterAdapter(getContext(), fighters);
         fightersList.setAdapter(adapter);
+    }
+
+    private void updateAdapter(List<Fighter> fighters) {
+        adapter.clear();
+        adapter.addAll(fighters);
+        adapter.notifyDataSetChanged();
     }
 }
