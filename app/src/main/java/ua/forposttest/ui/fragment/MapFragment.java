@@ -95,7 +95,7 @@ public class MapFragment extends Fragment {
         });
     }
 
-    private int chooseImageByType(int type) {
+    public int chooseImageByType(int type) {
         switch (type) {
             case 0:
                 return R.drawable.ic_human;
@@ -106,7 +106,7 @@ public class MapFragment extends Fragment {
         }
     }
 
-    private void addMarkers(List<Fighter> fighters) {
+    public void addMarkers(List<Fighter> fighters) {
         mapView.getMapAsync(mapboxMap -> {
             MapFragment.this.mapboxMap = mapboxMap;
             getDialog(fighters);

@@ -46,18 +46,10 @@ public class ChronologyFragment extends Fragment {
     private void init() {
         MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         LiveData<List<Fighter>> liveData = viewModel.getListOfFightersLiveData();
-        liveData.observe(this, this::update);
+        liveData.observe(this, this::initAdapter);
     }
 
-    private void update(List<Fighter> fighters) {
-        if (adapter == null) {
-            initAdapter(fighters);
-        } else {
-            adapter.update(fighters);
-        }
-    }
-
-    private void initAdapter(List<Fighter> fighters) {
+    public void initAdapter(List<Fighter> fighters) {
         if (fighters == null) return;
 
         adapter = new FighterAdapter(getContext(), fighters);

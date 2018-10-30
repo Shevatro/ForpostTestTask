@@ -15,16 +15,9 @@ import ua.forposttest.R;
 import ua.forposttest.data.model.Fighter;
 
 public class FighterAdapter extends ArrayAdapter<Fighter> {
-    private List<Fighter> fighters;
 
     public FighterAdapter(@NonNull Context context, List<Fighter> fighters) {
         super(context, R.layout.list_item, fighters);
-        this.fighters = fighters;
-    }
-
-    public void update(List<Fighter> fighters) {
-        this.fighters = fighters;
-        notifyDataSetChanged();
     }
 
     @NonNull
