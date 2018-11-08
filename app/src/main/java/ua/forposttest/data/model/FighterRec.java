@@ -4,8 +4,8 @@ import java.util.List;
 
 public class FighterRec {
 
-    public List<Fighter> fighters;
-    public long timeBetweenSteps;
+    private List<Fighter> fighters;
+    private long timeBetweenSteps;
 
     public FighterRec(List<Fighter> fighters, long timeBetweenSteps) {
         this.fighters = fighters;
