@@ -1,5 +1,4 @@
 <resources>
-    <string name="access_token" translatable="false">pk.eyJ1IjoieGF2YWRvbngiLCJhIjoiY2pqY3ppZ2t5MTdwdjNwbzEwdmh4MG1uZSJ9.KSKx2cvJZumvtz_x2QUr7A</string>
     <string name="app_name">forposttest</string>
     <string name="current_status">Current status</string>
     <string name="description_start_dialog">Would you like to display the current status or view the last fight?</string>

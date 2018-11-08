@@ -1,12 +1,12 @@
 package ua.forposttest.ui.adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,47 +14,47 @@ import java.util.List;
 import ua.forposttest.R;
 import ua.forposttest.data.model.Fighter;
 
-public class FighterAdapter extends ArrayAdapter<Fighter> {
+public class FighterAdapter extends RecyclerView.Adapter<FighterAdapter.FighterViewHolder> {
+    private List<Fighter> fighters;
 
-    public FighterAdapter(@NonNull Context context, List<Fighter> fighters) {
-        super(context, R.layout.list_item, fighters);
+    public FighterAdapter(List<Fighter> fighters) {
+        this.fighters = fighters;
+    }
+
+    public void update(List<Fighter> fighters) {
+        this.fighters = fighters;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        ViewHolder holder;
-        View rowView = convertView;
-
-        if (rowView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            rowView = layoutInflater.inflate(R.layout.list_item, parent, false);
-
-            holder = new ViewHolder();
-            holder.team = rowView.findViewById(R.id.li_team);
-            holder.health = rowView.findViewById(R.id.li_health);
-//            holder.clips = rowView.findViewById(R.id.li_clips);
-//            holder.ammo = rowView.findViewById(R.id.li_ammo);
-
-            rowView.setTag(holder);
-        } else {
-            holder = (ViewHolder) rowView.getTag();
-        }
-
-        holder.team.setText(getItem(position).team);
-        holder.health.setText(String.valueOf(getItem(position).health));
-//        holder.clips.setText(String.valueOf(getItem(position).clips));
-//        holder.ammo.setText(String.valueOf(getItem(position).ammo));
-        rowView.setBackgroundColor(Color.parseColor(getItem(position).team));
-        return rowView;
+    public FighterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        return new FighterViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fighter_list_item, viewGroup, false));
     }
 
-    private static class ViewHolder {
+    @Override
+    public void onBindViewHolder(@NonNull FighterViewHolder holder, int position) {
+        Fighter fighter = fighters.get(position);
+        holder.team.setText(fighter.getTeam());
+        holder.health.setText(String.valueOf(fighter.getHealth()));
+        holder.listItem.setBackgroundColor(Color.parseColor(fighter.getTeam()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return fighters.size();
+    }
+
+    class FighterViewHolder extends RecyclerView.ViewHolder {
+        FrameLayout listItem;
         TextView team;
         TextView health;
-//        TextView clips;
-//        TextView ammo;
+
+        FighterViewHolder(@NonNull View itemView) {
+            super(itemView);
+            listItem = itemView.findViewById(R.id.fl_fighter_list_item);
+            team = itemView.findViewById(R.id.tv_team);
+            health = itemView.findViewById(R.id.tv_health);
+        }
     }
 }

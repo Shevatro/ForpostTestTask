@@ -20,7 +20,6 @@ public class FighterRecLiveData extends LiveData<List<Fighter>> {
 
     public FighterRecLiveData(FighterRecStorage storage) {
         this.fightRecord = storage.getRec();
-        compositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -34,7 +33,8 @@ public class FighterRecLiveData extends LiveData<List<Fighter>> {
     }
 
     private void init() {
-        Disposable disposable = Flowable.zip(Flowable.just(fightRecord).flatMap(Flowable::fromIterable), Flowable.interval(1, 1, TimeUnit.SECONDS), (obs, timer) -> obs)
+        compositeDisposable = new CompositeDisposable();
+        Disposable disposable = Flowable.zip(Flowable.just(fightRecord).flatMap(Flowable::fromIterable), Flowable.interval(1, 5, TimeUnit.SECONDS), (obs, timer) -> obs)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

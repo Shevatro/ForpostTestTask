@@ -3,7 +3,6 @@ package ua.forposttest.ui;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -49,12 +48,10 @@ public class MainViewModel extends ViewModel {
     }
 
     public void addHistory(List<Fighter> fighters) {
-        Log.d("test", "addHistory");
         recStorage.add(fighters);
     }
 
     public void saveHistory() {
-        Log.d("test", "saveHistory");
         //если это не просмотр последней битвы
         if (!flagLastFight) {
             recStorage.setRec();
