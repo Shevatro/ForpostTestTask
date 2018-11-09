@@ -1,10 +1,10 @@
 # ForpostTestTask
 fork https://gitlab.com/lasertagnet/forposttesttask
 
-Android app for displaying a simulation of the battle. It consists of 2 parts: maps and chronology list.
-The map displays the fighter or equipment of the corresponding color of the team, by clicking on which a window with additional information displays.
-The history shows the number of connected fighters and changes in their health status.
-Data comes from real time db (firebase).
+<p>Android app for displaying a simulation of the battle. It consists of 2 parts: maps and chronology list.</p>
+<p>The map displays the fighter or equipment of the corresponding color of the team, by clicking on which a window with additional information displays.</p>
+<p>The history shows the number of connected fighters and changes in their health status.</p>
+<p>Data comes from real time db (firebase).</p>
 
 In this project I used:
 - <a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData</a>
